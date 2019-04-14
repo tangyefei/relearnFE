@@ -1,6 +1,6 @@
 define(['helper'], function(helper){
   var $ = helper.$;
-  function render(artcList) {
+  function renderList(artcList) {
     var $container = $('.article-container');
     artcList.forEach(artc => {
       var $artc = $('div', true).addClass('article');
@@ -16,6 +16,20 @@ define(['helper'], function(helper){
       $container.append($artc.get());
     });
   }
-  return render;
-  // return {render: render};
+  function renderManageList(artcList) {
+    var $container = $('.article-container');
+    artcList.forEach(artc => {
+      var $artc = $('li', true).addClass('item').text(artc.title).data('id', artc.id);
+      var $del = $('span', true).addClass('btn').addClass('del-btn').text('delete');
+      var $view = $('span', true).addClass('btn').addClass('view-btn').text('view');
+      $artc.append($del.get(0)).append($view.get(0));
+      $container.append($artc.get());
+    });
+    var $add = $('span', true).addClass('btn').addClass('add-btn').text('add');
+    $container.append($add.get(0))
+  }
+  function clear() {
+
+  }
+  return {list: renderList, mlist: renderManageList};
 })

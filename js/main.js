@@ -1,5 +1,5 @@
 requirejs.config({
-  baseUrl: 'common',
+  baseUrl: 'js/common',
   paths: {
     "ajax": "ajax",
     "helper": "helper",
@@ -8,10 +8,10 @@ requirejs.config({
   }
 });
 
-requirejs(['request', 'render'], function (Request, render) {
+requirejs(['request', 'render'], function (Request, Render) {
   Request.get(function (resp) {
     if (resp.code == 1) {
-      render(resp.body);
+      Render.list(resp.body);
     }
   })
 });
