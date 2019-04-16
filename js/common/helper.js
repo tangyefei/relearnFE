@@ -5,8 +5,10 @@ define(function (){
   function Query(a, create = false) {
     if (create) {
       return new CNode(document.createElement(a));
-    } else {
+    } else if(typeof a === 'string') {
       return new CNode(document.querySelector(a));
+    } else {
+      return new CNode(a);
     }
   }
 
