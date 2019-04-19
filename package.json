@@ -1,0 +1,30 @@
+{
+  "name": "relearnFE",
+  "version": "1.0.0",
+  "description": "> 这个repo从最简单的html开始，逐步搭建成一个完整的blog，在搭建的过程中不断提出新的问题，然后寻找技术手段予以解决，其中陆续会包含的有CSS，DOM查询，Ajax请求，压缩，JS的模块化，CSS的预编译，路由，采用何种前端框架，如何发布等。",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "webpack-dev-server --open",
+    "build": "webpack"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tangyefei/relearnFE.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tangyefei/relearnFE/issues"
+  },
+  "homepage": "https://github.com/tangyefei/relearnFE#readme",
+  "devDependencies": {
+    "css-loader": "^2.1.1",
+    "file-loader": "^3.0.1",
+    "style-loader": "^0.23.1",
+    "webpack": "^4.30.0",
+    "webpack-cli": "^3.3.0",
+    "webpack-dev-server": "^3.3.1"
+  }
+}

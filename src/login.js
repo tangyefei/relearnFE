@@ -1,15 +1,27 @@
-requirejs.config({
-  baseUrl: 'js/common',
-  paths: {
-    "ajax": "ajax",
-    "helper": "helper",
-    "request": "request",
-    "render": "render"
-  }
-});
+// requirejs.config({
+//   baseUrl: 'js/common',
+//   paths: {
+//     "ajax": "ajax",
+//     "helper": "helper",
+//     "request": "request",
+//     "render": "render"
+//   }
+// });
 
-requirejs(['request', 'helper'], function (Request, helper) {
-  var $ = helper.$;
+  import "./css/base.css";
+  import "./css/login.css";
+  
+  import Request from './js/common/request.js';
+  import Helper from './js/common/helper.js';
+
+  // Request.get(function (resp) {
+  //   if (resp.code == 1) {
+  //     Render.list(resp.body);
+  //   }
+  // })
+
+// requirejs(['request', 'helper'], function (Request, helper) {
+  var $ = Helper.$;
   var $btn = $('.submit-btn').get(0);
   var $username = $('input[name="username"]').get(0)
   var $password = $('input[name="password"]').get(0)
@@ -24,7 +36,7 @@ requirejs(['request', 'helper'], function (Request, helper) {
         }
       })
     }
-  });
+  // });
   // Request.Auth.login(function (resp) {
   //   if (resp.code == 1) {
   //     render(resp.body);
