@@ -3,8 +3,9 @@
   max-width: 700px;
   margin: 60px auto 0;
 }
-.manage-page h1 {
+.manage-page h3 {
   text-align: center;
+  margin-top: 20px;
   margin-bottom: 1em;
 }
 .manage-page .article-container li {

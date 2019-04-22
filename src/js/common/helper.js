@@ -65,6 +65,7 @@ CNode.prototype = {
   addClass: function (a) { this.dom.classList.add(a); return this; },
   removeClass: function (a) { this.dom.classList.remove(a); return this; },
   text: function (a) { this.dom.innerText = a; return this; },
+  html: function (a) { this.dom.innerHTML = a; return this; },
   append: function (a) { this.dom.append((a instanceof CNode) ? a.get(0) : a); return this;},
   data: function(a,c) {this.dom.dataset[a] = c; return this;},
   next: function() {return this.dom.nextElementSibling ? new CNode(this.dom.nextElementSibling): null},

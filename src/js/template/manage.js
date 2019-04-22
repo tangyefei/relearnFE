@@ -6,8 +6,9 @@
   var $ = Helper.$;
   var template = 
     '<div class="page manage-page">' + 
-    '  <h1>后台管理</h1>' + 
+    '  <h3>后台管理</h1>' + 
     '  <div class="article-container"> </div>' + 
+    '  <footer> © Copyright 2019 Yefei Tang </footer>' +
     '</div>';
     
   var instance = {
@@ -44,23 +45,10 @@
         }
       });
     },
-    insertStyle: function(){
-      // var cssId = 'manage-template-css'; 
-      // if (!document.getElementById(cssId)) {
-      //     var head  = document.getElementsByTagName('head')[0];
-      //     var link  = document.createElement('link');
-      //     link.id   = cssId;
-      //     link.rel  = 'stylesheet';
-      //     link.type = 'text/css';
-      //     link.href = 'js/template/manage.css';
-      //     head.appendChild(link);
-      // }
-    },
     render: function(){
       this.template = document.createRange().createContextualFragment(template);
       this.getArticles();
       this.bindEvents();
-      this.insertStyle();
       return this.template;
     }
   }
