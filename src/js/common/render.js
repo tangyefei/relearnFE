@@ -1,6 +1,6 @@
 import helper from './helper.js';
-
 var $ = helper.$;
+var markdown = require( "markdown" ).markdown;
 
 function renderList(artcList) {
   var $container = $('.article-list-container');
@@ -49,7 +49,8 @@ function renderDetail(data) {
   var $desc = $('div', true).addClass('desc').text(helper.format(data.created_at)).append($('span', true).text(helper.map(data.type) + '(' + data.tags + ')'))
   
   $banner.append($title).append($desc);
-  var $content = $('div', true).addClass('content').text(data.content);
+  var $content = $('div', true).addClass('content').html(markdown.toHTML(data.content));
+
   $('.article-container').append($banner).append($content);
 }
 export default {renderList, list: renderList, mlist: renderManageList, renderDetail};
