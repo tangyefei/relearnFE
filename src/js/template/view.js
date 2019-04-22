@@ -1,5 +1,5 @@
 import Request from "../common/request.js"
-import Helper from "../common/Helper.js"
+import Helper from "../common/helper.js"
 import './view.css';
 var template = 
   '<div class="page view-page">' + 
