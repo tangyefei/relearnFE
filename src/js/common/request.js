@@ -1,33 +1,29 @@
 
 
 
-// define(['ajax'], 
 import ajax from './ajax.js';
-
-const host = 'http://localhost:8000'
+import helper from './helper.js';
 
 export default {
   Auth: {
     login(data, callback){
-      return ajax.postJson(host + '/api/login', data, callback);
+      return ajax.postJson('/api/login', data, callback);
     }
   },
   Admin: {
-    get(callback){
-      return ajax.get(host + '/api/manage/articles', callback);
-    },
     delArticle(id, callback) {
-      return ajax.postJson(host + '/api/manage/article/del', {id}, callback);
+      return ajax.postJson('/api/manage/article/del', {id}, callback);
     },
-    saveArticle(data, callback) {
-      return ajax.postJson(host + '/api/manage/article/add', data, callback);
-    },
-    getArticle(id, callback) {
-      return ajax.get(host + '/api/manage/article', {id}, callback);
-    }
   },
-  get(callback){
-    return ajax.get(host + '/api/articles', callback);
+  saveArticle(data, callback) {
+    return ajax.postJson('/api/article', data, callback);
+  },
+  getArticle(id, callback) {
+    return ajax.get(`/api/article/${id}`, callback);
+  },
+  getArticles(param, callback){
+    var query = helper.formatQuery(param);
+    return ajax.get(`/api/articles${query}`, callback);
   }
 }
 

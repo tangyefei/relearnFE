@@ -1,6 +1,6 @@
   import Request from "../common/request.js"
   import Render from "../common/render.js"
-  import Helper from "../common/Helper.js"
+  import Helper from "../common/helper.js"
   import './manage.css';
 
   var $ = Helper.$;
@@ -14,7 +14,7 @@
     template: null,
     getArticles: function(){
       var self = this;
-      Request.Admin.get(function (resp) {
+      Request.getArticles({}, function (resp) {
         if (resp.code == 1) {
           Render.mlist(resp.body, self.template);
         }
