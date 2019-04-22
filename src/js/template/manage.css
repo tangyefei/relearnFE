@@ -1,5 +1,7 @@
 .manage-page {
   font-size: 1.2em;
+  max-width: 700px;
+  margin: 60px auto 0;
 }
 .manage-page h1 {
   text-align: center;

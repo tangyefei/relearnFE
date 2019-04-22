@@ -14,7 +14,7 @@
     template: null,
     getArticles: function(){
       var self = this;
-      Request.Admin.get(function (resp) {
+      Request.getArticles({}, function (resp) {
         if (resp.code == 1) {
           Render.mlist(resp.body, self.template);
         }

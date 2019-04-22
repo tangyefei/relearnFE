@@ -1,0 +1,38 @@
+.detail-page .banner {
+  background: url(../images/sea.jpeg) 50% 86% / 100% auto;
+  padding: 76px 0;
+}
+
+.detail-page .banner nav {
+  height: 42px;
+  line-height: 37px;
+  margin: 0 auto;
+  border-bottom: 1px solid rgba(0,0,0,.04);
+}
+.detail-page .banner h2 {
+  padding: 80px 0 0;
+  color: #FFFF;
+  font-size: 28px;
+  text-align: center;
+} 
+.detail-page .banner .desc {
+  padding: 10px 0;
+  text-align: center;
+  color: #FFF;
+}
+.detail-page .banner .desc span {
+  margin-left: 25px;
+}
+.detail-page .content {
+  line-height: 1.8em;
+  width: 850px;
+  margin: 0 auto;
+  background: #FFF;
+  border-left: 1px solid rgba(0,0,0,0.1);
+  border-right: 1px solid rgba(0,0,0,0.1);
+  padding: 20px;
+} 
+
+.detail-page .content img {
+  max-width: 100%;
+}

@@ -3,7 +3,8 @@ const path = require('path');
 module.exports = {
   mode: 'development',
   entry: {
-    index: './src/main.js',
+    index: './src/index.js',
+    detail: './src/detail.js',
     login: './src/login.js',
     manage: './src/manage.js',
   },
@@ -25,7 +26,7 @@ module.exports = {
         ]
       },
       {
-        test: /\.(png|svg|jpg|gif)$/,
+        test: /\.(png|svg|jpg|jpeg|gif)$/,
         use: [
           'file-loader'
         ]

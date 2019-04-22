@@ -7,6 +7,7 @@ function createXHR() {
 }
 
 export default {
+  host: '',//'http://localhost:8000',
   postJson(url, data, callback) {
     return this.ajax(url, {method: "POST", data}, callback);
   },
@@ -14,6 +15,7 @@ export default {
     return this.ajax(url, {method: "GET"}, callback)  
   },
   ajax(url, param, callback) {
+    var self = this;
     var xhr = createXHR();
     xhr.onreadystatechange = function() {
       if (xhr.readyState==4)  {
@@ -32,7 +34,7 @@ export default {
         }
       }
     };
-    xhr.open(param.method, url, true);
+    xhr.open(param.method, self.host + url, true);
     if(param.method === 'POST') {
       xhr.setRequestHeader("Content-Type", "application/json");
     }
