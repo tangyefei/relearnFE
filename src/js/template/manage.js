@@ -1,9 +1,8 @@
   import Request from "../common/request.js"
   import Render from "../common/render.js"
-  import Helper from "../common/helper.js"
-  import './manage.css';
+  import $ from "../common/dquery.js"
+  import 'template/manage.css';
 
-  var $ = Helper.$;
   var template = 
     '<div class="page manage-page">' + 
     '  <h3>后台管理</h1>' + 

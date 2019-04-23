@@ -1,6 +1,7 @@
-import Request from "../common/request.js"
-import Helper from "../common/helper.js"
-import './view.css';
+import Request from "js/request.js"
+import $ from "js/dquery.js"
+import Utils from "js/utils.js"
+import 'template/view.css';
 
 var markdown = require( "markdown" ).markdown;
 
@@ -34,8 +35,7 @@ var template =
   '  </div>';
 
 
-var $ = Helper.$;
-var formatDate = Helper.format;
+var formatDate = Utils.format;
 var instance = {
   template: null,
   getArticle(id) {

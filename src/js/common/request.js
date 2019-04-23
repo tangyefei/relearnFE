@@ -2,7 +2,7 @@
 
 
 import ajax from './ajax.js';
-import helper from './helper.js';
+import Utils from './utils.js';
 
 export default {
   Auth: {
@@ -22,7 +22,7 @@ export default {
     return ajax.get(`/api/article/${id}`, callback);
   },
   getArticles(param, callback){
-    var query = helper.formatQuery(param);
+    var query = Utils.formatQuery(param);
     return ajax.get(`/api/articles${query}`, callback);
   }
 }

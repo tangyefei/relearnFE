@@ -42,6 +42,9 @@
   color: #3f51b5;
   text-decoration: none;
 }
+.home-page .menus li a:hover {
+  text-decoration: underline;
+}
 .home-page .article-list-container {
   margin-top: 50px;
 

@@ -1,5 +1,5 @@
 const path = require('path');
-
+const webpack = require('webpack');
 module.exports = {
   mode: 'development',
   entry: {
@@ -7,6 +7,13 @@ module.exports = {
     detail: './src/detail.js',
     login: './src/login.js',
     manage: './src/manage.js',
+  },
+  resolve: {
+    alias: {
+      js: path.resolve(__dirname, 'src/js/common/'),
+      template: path.resolve(__dirname, 'src/js/template/'),
+      css: path.resolve(__dirname, 'src/css/'),
+    }
   },
   devServer: {
     contentBase: './dist'

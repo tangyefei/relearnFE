@@ -1,57 +1,16 @@
-
-const category = {
-  'psy': '心理',
-  'tech': '技术',
-  'read': '读书',
-  'travel': '旅行',
-}
-
-function map(key) {
-  return category[key];
-}
-function formatQuery(param) {
-  param =  param || {};
-  var couples = [];
-  for(var key in param) {
-    couples.push(key + '=' + param[key]);
-  }
-  if(couples.length > 0) {
-    return '?' + couples.join('&');
-  } else {
-    return '';
-  }
-}
+import Utils from './utils.js';
 
 function CNode(dom) {
   this.dom = dom;
 }
-function Query(a, create = false) {
-  if (create) {
-    return new CNode(document.createElement(a));
-  } else if(typeof a === 'string') {
-    return new CNode(document.querySelector(a));
-  } else {
-    return new CNode(a)
-  }
-}
-
-function format(date) {
-  var d = new Date(date);
-  var date = d.getDate();
-  var month = d.getMonth() + 1; 
-  var year = d.getFullYear();
-  month = month < 10 ? ('0' + month) : month;
-  year = year < 10 ? ('0' + year) : year;
-  return year + "-" + month + "-" + date
-}
-
 CNode.prototype = {
   constructor: CNode,
   on: function(event, selector, handler) {
     this.dom.addEventListener(event, function(evt){
+      var $target = new CNode(evt.target);
       var nodelist = document.querySelectorAll(selector);
       var node = Array.prototype.find.call(nodelist, function(e){
-        return e == evt.target;
+        return e == evt.target || $target.parentIs(e);
       });
       if(node) {
         handler(evt);
@@ -59,11 +18,36 @@ CNode.prototype = {
     })
     return this;
   },
+  parentIs(dom) {
+    // only support class right now
+    let parent = this.dom.parentElement;
+    while(parent && parent.nodeName != 'HTML') {
+      if(parent === dom) return true;
+      parent = parent.parentElement;
+    }
+    return false;
+  },
+  siblings: function() {
+    var self = this;
+    var children = self.dom.parentElement.children;
+    return new CNode(Array.prototype.filter.call(children, function(ele) {
+      return (ele !== self.dom)
+    }))
+  },
   get: function () { return this.dom; },
   hasClass: function (a) { this.dom.classList.contains(a); return this; },
   remove: function (a) { return this.dom.remove(a); },
   addClass: function (a) { this.dom.classList.add(a); return this; },
-  removeClass: function (a) { this.dom.classList.remove(a); return this; },
+  removeClass: function (a) { 
+    if(Utils.isArray(this.dom)) {
+      this.dom.forEach(d => {
+        (new CNode(d)).removeClass(a)
+      } )
+     } else {
+      this.dom.classList.remove(a); 
+     }
+    return this; 
+  },
   text: function (a) { this.dom.innerText = a; return this; },
   html: function (a) { this.dom.innerHTML = a; return this; },
   append: function (a) { this.dom.append((a instanceof CNode) ? a.get(0) : a); return this;},
@@ -73,10 +57,15 @@ CNode.prototype = {
   
 }
 
-export default {
-  format,
-  $: Query,
-  CNode, CNode ,
-  map,
-  formatQuery
+function $(a, create = false) {
+  if (create) {
+    return new CNode(document.createElement(a));
+  } else if(typeof a === 'string') {
+    return new CNode(document.querySelector(a));
+  } else {
+    return new CNode(a)
+  }
 }
+
+
+export default $;

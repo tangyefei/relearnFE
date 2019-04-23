@@ -1,9 +1,9 @@
 
-import Request from './js/common/request.js';
-import Render from './js/common/render.js';
-import Helper from './js/common/helper.js';
-import "./css/base.css";
-import "./css/home.css";
+import Request from 'js/request.js';
+import Render from 'js/render.js';
+import $ from 'js/dquery.js';
+import "css/base.css";
+import "css/home.css";
 
 function getArticle(param) {
   var sufix = location.hash;
@@ -14,27 +14,15 @@ function getArticle(param) {
       Render.renderList(resp.body);
     }
   })
-}
+} 
 
 window.onhashchange = function() {
   getArticle(); 
 };
 
-var $ = Helper.$;
-
 $('.menus').on('click', 'a', function(evt) {
-  // add active class
-  var $li = $(evt.target.parentElement);
-  $li.addClass('active');
-  
-  //  remove siblings class
-  var $it = $li;
-  while($it.next()) { $it = $it.next(); $it.removeClass("active"); }
-  $it = $li;
-  while($it.prev()) { $it = $it.prev(); $it.removeClass("active"); }
+  $(evt.target.parentElement).addClass('active').siblings().removeClass('active');
 })
-
-
 
 getArticle();
 

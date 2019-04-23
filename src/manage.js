@@ -1,9 +1,8 @@
-import "./css/base.css";
-// import "./css/style.css";
+import "css/base.css";
 
-import Router from './js/common/router.js';
-import tmpl_manage from './js/template/manage.js';
-import tmpl_view from './js/template/view.js';
+import Router from 'js/router.js';
+import tmpl_manage from 'template/manage.js';
+import tmpl_view from 'template/view.js';
 
 var router = new Router('#app');
 router.route('manage', tmpl_manage);
