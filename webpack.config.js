@@ -1,5 +1,6 @@
 const path = require('path');
-const webpack = require('webpack');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+
 module.exports = {
   mode: 'development',
   entry: {
@@ -23,14 +24,24 @@ module.exports = {
     path: path.resolve(__dirname, 'dist')
   },
   devtool: 'inline-source-map',
+  plugins: [
+    new MiniCssExtractPlugin({
+      filename: '[name].css',
+      chunkFilename: '[id].css',
+    }),
+  ],
+
   module: {
     rules: [
       {
         test: /\.css$/,
-        use: [
-          'style-loader',
-          'css-loader'
-        ]
+        use: [{
+          loader: MiniCssExtractPlugin.loader,
+          options: {
+            hmr: process.env.NODE_ENV === 'development',
+          }
+        },
+        'css-loader']
       },
       {
         test: /\.(png|svg|jpg|jpeg|gif)$/,
