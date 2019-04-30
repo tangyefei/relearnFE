@@ -28,8 +28,12 @@ footer {
   position: relative;
 }
 
+code {
+  color: #b36e6e;
+}
 pre {
   background: #000;
   color: #FFF;
   padding: 10px;
+  overflow-y: auto;
 }
