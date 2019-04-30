@@ -11,11 +11,6 @@
 .manage-page .article-container li {
   line-height: 30px;
 }
-.manage-page .article-container pre {
-  background: #000;
-  color: #FFF;
-  padding: 10px;
-}
 .manage-page .btn {
   text-decoration: underline;
   float: right;
