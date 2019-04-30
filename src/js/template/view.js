@@ -1,9 +1,10 @@
 import Request from "js/request.js"
 import $ from "js/dquery.js"
 import Utils from "js/utils.js"
+import showdown  from "showdown";
 import 'template/view.css';
 
-var markdown = require( "markdown" ).markdown;
+var markdown = new showdown.Converter();
 
 var template = 
   '<div class="page view-page">' + 
@@ -52,7 +53,7 @@ var instance = {
         form.tags.value = resp.body.tags;
         form.overview.value = resp.body.overview;
         form.content.value = resp.body.content;
-        $preview.html(markdown.toHTML(resp.body.content));
+        $preview.html(markdown.makeHtml(resp.body.content));
       }
     })
   },
@@ -100,12 +101,9 @@ var instance = {
     });
 
     var $preview = $(this.template.querySelector('.preview-panel'));
-    
     $page.on('input', '.markdown-editor', function(evt) {
-      $preview.html(markdown.toHTML(evt.target.value));
+      $preview.html(markdown.makeHtml(evt.target.value));
     });
-    
-    // $preview.html(markdown.toHTML($editor));
   },
   render: function(){
     this.template = document.createRange().createContextualFragment(template);

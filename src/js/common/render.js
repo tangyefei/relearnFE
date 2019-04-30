@@ -1,7 +1,8 @@
 import $ from './dquery.js';
 import Utils from './utils.js';
+import showdown  from "showdown";
 
-var markdown = require( "markdown" ).markdown;
+var markdown = new showdown.Converter();
 
 function renderList(artcList) {
   var $container = $('.article-list-container');
@@ -50,7 +51,7 @@ function renderDetail(data) {
   var $desc = $('div', true).addClass('desc').text(Utils.format(data.created_at)).append($('span', true).text(Utils.map('ARTICLE_CATEGORY', data.type) + '(' + data.tags + ')'))
   
   $banner.append($title).append($desc);
-  var $content = $('div', true).addClass('content').html(markdown.toHTML(data.content));
+  var $content = $('div', true).addClass('content').html(markdown.makeHtml(data.content));
 
   $('.article-container').append($banner).append($content);
 }
