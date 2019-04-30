@@ -33,6 +33,7 @@
 .view-page form div .form-content .markdown-editor,
 .view-page form div .form-content .preview-panel {
   flex: 1;
+  width: 50%;
 }
 .view-page form div .form-content .preview-panel {
   padding: 10px;
