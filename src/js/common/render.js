@@ -27,7 +27,8 @@ function renderList(artcList) {
   $container.on('click', '.article h3', function(evt) {
     let id = evt.target.parentElement.dataset.id;
     if(id){
-      window.open(`${window.origin}/detail.html?id=${id}`, '_blank');
+      // ${window.origin}
+      window.open(`/detail.html?id=${id}`, '_blank');
     }
   })
 }
