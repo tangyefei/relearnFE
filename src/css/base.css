@@ -1,4 +1,4 @@
-html,body, p, h1, h2, h3, h4, h5, h6,ul,ol,li{
+html,body, p, ul,ol,li{
   margin: 0;
   padding: 0;
 }
@@ -26,6 +26,7 @@ footer {
 .page {
   min-height: 100vh;
   position: relative;
+  padding: 0 10px;
 }
 
 code {
