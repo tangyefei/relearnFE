@@ -77,7 +77,7 @@ var instance = {
     Request.saveArticle(data, function(resp){
       if(resp.code ==1 && resp.body) {
         alert(data.id ? '修改成功' : '新增成功') ;
-        window.location.href = '/detail.html?id='+data.id;
+        window.location.href = '/detail.html?id=' + (data.id||resp.body);
       }
     })
   },

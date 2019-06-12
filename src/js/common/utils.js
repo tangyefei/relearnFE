@@ -17,7 +17,7 @@ export default  {
     var month = d.getMonth() + 1; 
     var year = d.getFullYear();
     month = month < 10 ? ('0' + month) : month;
-    year = year < 10 ? ('0' + year) : year;
+    date = date < 10 ? ('0' + date) : date;
     return year + "-" + month + "-" + date
   },
   isArray(o) {

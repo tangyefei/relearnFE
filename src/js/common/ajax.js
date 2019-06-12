@@ -6,8 +6,10 @@ function createXHR() {
   }
 }
 
+function tip(msg) {alert(msg);}
+
 export default {
-  host: 'http://localhost:8000',
+  host: '',//'http://localhost:8000',
   postJson(url, data, callback) {
     return this.ajax(url, {method: "POST", data}, callback);
   },
