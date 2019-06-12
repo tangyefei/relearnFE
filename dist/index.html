@@ -9,11 +9,11 @@
   <link rel="stylesheet" href="index.css">
 </head>
 
-<body>
+<body id="app">
   <div class="page home-page">
     <div class="intro"><span class="avatar"></span>
       <p><span>“</span> 蔑视命运。如果你确定了自己的标准，你对自己的生活会有大得多的控制。<span>”</span> &nbsp;&nbsp;&nbsp;《黑天鹅》</p>
-      <h3>Yefei 前端工程师</h3>
+      <h3>Yefei 前端工程师 V2</h3>
     </div>
     <ul class="menus">
       <!-- <li><a href="#">关于我</a></li> -->
@@ -22,7 +22,19 @@
       <li><a href="#read">读书</a></li>
       <li><a href="#travel">旅行</a></li>
     </ul>
-    <div class="article-list-container"> </div>
+
+
+    <div class="article-list-container">
+        <div class="article" data-id="1" v-for="artc in articleList">
+          <h3 v-text="artc.title" v-click="openPage(artc.id)"></h3>
+          <p class="meta">
+            <span class="created-date" v-text="artc.created_at"></span>
+            <span class="tag" v-text="artc.tags"></span>
+          </p>
+          <div class="overview" v-text="artc.overview"></div>
+        </div>
+    </div>
+
     <footer> © Copyright 2019 Yefei Tang </footer>
   </div>
   <script src="index.bundle.js"></script>

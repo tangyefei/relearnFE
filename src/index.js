@@ -1,17 +1,26 @@
 
-import Request from 'js/request.js';
-import Render from 'js/render.js';
-import $ from 'js/dquery.js';
+import Request from 'js/request';
+import Render from 'js/render';
+import $ from 'js/dquery';
 import "css/base.css";
 import "css/home.css";
+import Vue from 'vue/index.js';
 
 function getArticle(param) {
   var sufix = location.hash;
   var hash = sufix && sufix.split('#')[1];
   var param = hash ? {type: hash} : {};
+
   Request.getArticles(param, function (resp) {
     if (resp.code == 1) {
-      Render.renderList(resp.body);
+      // console.log(Vue)
+      new Vue({
+        root: '#app',
+        data: {
+          articleList: resp.body
+        } 
+      })
+      // Render.renderList(resp.body);
     }
   })
 } 

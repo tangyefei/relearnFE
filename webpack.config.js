@@ -12,6 +12,7 @@ module.exports = {
   resolve: {
     alias: {
       js: path.resolve(__dirname, 'src/js/common/'),
+      vue: path.resolve(__dirname, 'src/js/vue/'), 
       template: path.resolve(__dirname, 'src/js/template/'),
       css: path.resolve(__dirname, 'src/css/'),
     }
