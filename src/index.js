@@ -13,14 +13,7 @@ function getArticle(param) {
 
   Request.getArticles(param, function (resp) {
     if (resp.code == 1) {
-      // console.log(Vue)
-      new Vue({
-        root: '#app',
-        data: {
-          articleList: resp.body
-        } 
-      })
-      // Render.renderList(resp.body);
+      Render.renderList(resp.body);
     }
   })
 } 
