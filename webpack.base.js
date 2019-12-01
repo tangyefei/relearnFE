@@ -1,8 +1,19 @@
+
+// var baseWebpackConfig = require('./webpack.base')
+// const merge = require('webpack-merge')
+
+// module.exports = merge(baseWebpackConfig, {
+  // mode: 'production',
+
 const path = require('path');
+// const webpack = require('webpack');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = {
-  mode: 'development',
+  output: {
+    filename: '[name].bundle.js',
+    path: path.resolve(__dirname, 'dist')
+  },
   entry: {
     index: './src/index.js',
     detail: './src/detail.js',
@@ -20,11 +31,6 @@ module.exports = {
   devServer: {
     contentBase: './dist'
   },
-  output: {
-    filename: '[name].bundle.js',
-    path: path.resolve(__dirname, 'dist')
-  },
-  devtool: 'inline-source-map',
   plugins: [
     new MiniCssExtractPlugin({
       filename: '[name].css',
@@ -52,4 +58,6 @@ module.exports = {
       }
     ]
   }
-};
+}
+
+// })
