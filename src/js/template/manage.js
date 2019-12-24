@@ -20,7 +20,7 @@
         }
       })
     },
-    delArticle: function(){
+    delArticle: function(id){
       var self = this;
       Request.Admin.delArticle(id, function (resp) {
         if (resp.code == 1) {
