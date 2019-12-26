@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+
+  <div id="root"></div>
+
+  <script>
+    function defineReactive(data, key, val){
+      const dep = new Dep();
+      Object.defineProperty(data, key, {
+        get: function(){
+          debugger;
+          dep.add(window.target);
+          console.log("get")
+          return val;
+        },
+        set: function(newval){
+          debugger;
+          if(newval != val) {
+            console.log("set")
+            val = newval;
+            dep.notify();
+          }
+        }
+      })
+    }
+
+    class Watcher {
+      constructor(vm, exp, obj) {
+        this.vm = vm;
+        this.obj = obj
+        this.getter = parsePath(exp);
+        this.value = this.get();
+        this.render();
+      }
+
+      get() {
+        window.target = this;
+        let value = this.getter.call(this.vm, this.obj);
+        return value;
+      }
+
+      render() {
+        this.vm.innerHTML = this.value;
+      }
+
+      update() {
+        const oldValue = this.value;
+        this.value = this.get();
+        this.render();
+      }
+    }
+
+    class Dep {
+      constructor(){
+        this.depends = [];
+      }
+
+      add(depend) {
+        if(this.depends.indexOf(depend) === -1) {
+          this.depends.push(depend);
+        }
+      }
+
+      notify() {
+        for (let i = 0; i < this.depends.length; i++) {
+          const depend = this.depends[i];
+          depend.update();
+        }
+      }
+    }
+
+    function parsePath(exp) {
+      const segments = exp.split('.');
+      return function(obj) {
+        for (let i = 0; i < segments.length; i++) {
+          const key = segments[i];
+          if(!obj) return;
+          obj = obj[key];
+        }
+        return obj;
+      }
+    }
+
+    class Observer {
+      constructor(value) {
+        this.value = value;
+        this.walk(value);
+      }
+
+      walk(obj) {
+        const keys = Object.keys(this.value);
+        for (let key of keys) {
+          defineReactive(obj, key, obj[key]) 
+        }
+      }
+    }
+
+    
+    var data = {title: 'hello vue'};
+    // defineReactive(data, 'title', data['title']);
+
+    // // test defineReactive
+    // data.title;
+    // data.title = 'yes, man'
+    // console.log(data.title);
+    
+    new Observer(data);
+
+    var root = document.getElementById("root");
+    var watch = new Watcher(root, 'title', data);
+
+    data.title = 'ghost';
+  </script>
+</body>
+</html>
