@@ -9,7 +9,11 @@ function createXHR() {
 function tip(msg) {alert(msg);}
 
 export default {
+<<<<<<< Updated upstream
   host: 'https://tangyefei.cn',//'http://localhost:8000',
+=======
+  host:'http://tangyefei.cn',
+>>>>>>> Stashed changes
   postJson(url, data, callback) {
     return this.ajax(url, {method: "POST", data}, callback);
   },

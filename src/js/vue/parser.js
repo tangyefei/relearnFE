@@ -1,4 +1,3 @@
-
 var template = `<div id="container" class="emphisis"><img /><h3>tangyefei's blog</h3><p>Look down fate, then you'd get better control on life</p></div>`;
 
 var startTagOpen = /^<(\w+)/;
