@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+
+  <script src="js/Dep.js"></script>
+  <script src="js/Watcher.js"></script>
+  <script src="js/Observer.js"></script>
+</head>
+<body>
+
+  <div id="root"></div>
+
+  <script>
+    var data = {title: 'title',hobbies: ['love', 'play', 'eat']};
+
+    // function testDefineReactive() {
+    //   defineReactive(data, 'title', data['title']);
+  
+    //   data.title;
+    //   data.title = 'yes, man'
+    // }
+    
+    function testObserverAndWatcher() {
+      new Observer(data);
+      
+      var el = document.getElementById("root");
+
+      // new Watcher(el, 'title', data);
+      // new Watcher(el, 'desc', data);
+      new Watcher(el, 'hobbies', data);
+      
+      // data.title = 'title new';
+      // data.desc = 'desc new';
+      data.hobbies.push('coding');
+      // console.log(data.hobbies)
+    }
+    
+    testObserverAndWatcher();
+
+    // var list = [];
+    // list.push(1);
+    // list.pop();
+  </script>
+</body>
+</html>
