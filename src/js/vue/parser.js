@@ -1,4 +1,4 @@
-var template = `<div id="container" class="emphisis"><img /><h3>tangyefei's blog</h3><p>Look down fate, then you'd get better control on life</p></div>`;
+var template = `<div id="container" class="emphisis"><img /><h3>{{owner}}'s blog</h3><p>Look down fate, then you'd get better control on life</p></div>`;
 
 var startTagOpen = /^<(\w+)/;
 var startTagClose = /^\s*(\/)?>/;
@@ -89,9 +89,11 @@ function parseHTML(template, options) {
   }
 }
 
+
 let root;
 let parent;
 const stack = [];
+
 
 parseHTML(template, {
   start(tag, attrs, unary) {
@@ -114,10 +116,40 @@ parseHTML(template, {
   },
   chars(text) {
     if(parent && parent.children) {
-      var node = { type: 3, text, parent };
-      parent.children.push(node)
+      // var node = { type: 3, text, parent };
+      var expression;
+      if(expression=parseText(text)) {
+        parent.children.push({ type: 2, text, parent, expression })
+      } else {
+        parent.children.push({ type: 3, text, parent })
+      }
     }
   }
 })
 
 console.log(root);
+
+function parseText(text) {
+  text = text.trim();
+
+  if(!text) return;
+
+  var re = /\{\{\w+\}\}/g;
+  var match;
+  var tokens = [];
+  var lastIndex = 0;
+
+  while((match = re.exec(text)) != null) {
+    if(match.index > 0) tokens.push('"' + text.substring(lastIndex, match.index)  + '"');
+    tokens.push('_s(' + match[0].substring(2,match[0].length-2) + ')')
+    lastIndex = re.lastIndex;
+    // console.log(lastIndex);
+  }
+  if(lastIndex < text.length) {
+    tokens.push('"' + text.substring(lastIndex) + '"');
+  }
+  // console.log(tokens);
+  return tokens.join('+')
+}
+// console.log(parseText('haha {{name}} receive offer worth {{amount}}'));
+// console.log(parseText("{{owner}}'s blog"));
