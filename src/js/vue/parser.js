@@ -1,4 +1,5 @@
-var template = `<div id="container" class="emphisis"><img /><h3>{{owner}}'s blog</h3><p>Look down fate, then you'd get better control on life</p></div>`;
+// var template = `<div id="container" class="emphisis"><img /><h3>{{owner}}'s blog</h3><p>Look down fate, then you'd get better control on life</p></div>`;
+var template = `<div id="app" class="container">hell {{name}}</div>`
 
 var startTagOpen = /^<(\w+)/;
 var startTagClose = /^\s*(\/)?>/;
@@ -134,15 +135,16 @@ function parseText(text) {
   if(!text) return;
 
   var re = /\{\{\w+\}\}/g;
-
+  
   if(re.test(text)) {
+    re.lastIndex = 0;
     var match;
     var tokens = [];
     var lastIndex = 0;
   
     while((match = re.exec(text)) != null) {
       if(match.index > 0) tokens.push('"' + text.substring(lastIndex, match.index)  + '"');
-      tokens.push('_s(' + match[0].substring(2,match[0].length-2) + ')')
+      tokens.push('_v(' + match[0].substring(2,match[0].length-2) + ')')
       lastIndex = re.lastIndex;
       // console.log(lastIndex);
     }
@@ -207,5 +209,52 @@ function optimize(root) {
 
 optimize(root);
 
-
+console.log('after optimize')
 console.log(root);
+
+// 生成虚拟的元素节点
+function createElement() {}
+// 生成虚拟的文本节点
+function createTextNode() {}
+
+
+// 生成元素节点代码
+function generateElement(node) {
+  const data = genData(node);
+  const children = genChildren(node);
+  let code = `_e("${node.tag}"${data ? `,${data}` : ""}${children ? `,${children}` : ""})`
+  return code;
+}
+// 生成文本节点代码
+function generateText(node) {
+  return `_t(${node.type==2 ? node.expression : JSON.stringify(node.text)})`
+}
+function genData(node) {
+  if(node.attrs) {
+    let hash = {};
+    for (let attr of node.attrs) {
+      hash[attr[1]] = attr[2];
+    }
+    return JSON.stringify(hash);
+  }
+  return;
+}
+// 生成节点代码
+function genNode(node) {
+  if(node.type==1) {
+    return generateElement(node);
+  } else {
+    return generateText(node);
+  }
+}
+// 递归生成子节点的代码（子节点可能是元素，也可能是文本）
+function genChildren(node) {
+  const children = node.children;
+  if(children && children.length) {
+    return `[${children.map(c => genNode(c)).join(',')}]`
+  }
+}
+const code = generateElement(root);
+console.log(code);
+
+
