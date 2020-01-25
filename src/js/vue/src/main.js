@@ -1,11 +1,15 @@
 import {parseHTML, parseText} from './parser';
 import optimize from './optimizer';
 import generate from './generator'
+import {_t, _e, _v} from './vnode';
+// import withjs from './with';
+
+// withjs();
 
 // `<div id="container" class="emphisis"><img /><h3>{{owner}}'s blog</h3><p>Look down fate, then you'd get better control on life</p></div>`;
 
 
-let template = `<div id="app" class="container">hell {{name}}</div>`
+let template = `<div id="app" class="container">hello {{name}}</div>`
 
 let root, parent, stack = [];
 
@@ -46,6 +50,20 @@ optimize(root);
 // console.log('after optimize')
 // console.log(root);
 
-const code = generate(root);
+const code = 'with(this){return ' + generate(root) + ';}';
 console.log(code);
 
+
+var data = {
+  name: 'yefei',
+}
+var context = Object.assign(data, {
+  _t,
+  _e,
+  _v
+});
+console.log(context);
+var render = new Function(code);
+
+var vnode = render.call(context);
+console.log(vnode);
