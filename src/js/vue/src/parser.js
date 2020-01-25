@@ -1,5 +1,3 @@
-var template = `<div id="container" class="emphisis"><img /><h3>tangyefei's blog</h3><p>Look down fate, then you'd get better control on life</p></div>`;
-
 var startTagOpen = /^<(\w+)/;
 var startTagClose = /^\s*(\/)?>/;
 var attrTag = /^\s*((\w+)="(\w*)")/;
@@ -59,8 +57,9 @@ function parseEndTag(template) {
 
 // parseEndTag();
 
-function parseHTML(template, options) {
+export function parseHTML(template, options) {
   while(template) {
+    var text;
     var textEndPos = template.indexOf('<');
     if(textEndPos < 0) {
       text = template;
@@ -89,35 +88,35 @@ function parseHTML(template, options) {
   }
 }
 
-let root;
-let parent;
-const stack = [];
+export function parseText(text) {
+  text = text.trim();
 
-parseHTML(template, {
-  start(tag, attrs, unary) {
-    var node = { type: 1, tag, attrs, unary, parent, children:[] };
-    if(parent && parent.children) {
-      parent.children.push(node);
+  if(!text) return;
+
+  var re = /\{\{\w+\}\}/g;
+  
+  if(re.test(text)) {
+    re.lastIndex = 0;
+    var match;
+    var tokens = [];
+    var lastIndex = 0;
+  
+    while((match = re.exec(text)) != null) {
+      if(match.index > 0) tokens.push('"' + text.substring(lastIndex, match.index)  + '"');
+      tokens.push('_v(' + match[0].substring(2,match[0].length-2) + ')')
+      lastIndex = re.lastIndex;
+      // console.log(lastIndex);
     }
-    if(stack.length == 0) {
-      node.isRoot = true;
-      root = node;
+    if(lastIndex < text.length) {
+      tokens.push('"' + text.substring(lastIndex) + '"');
     }
-    if(!node.unary) {
-      stack.push(node);
-      parent =  node;
-    }
-  },
-  end() {
-    parent = parent.parent;
-    stack.pop();
-  },
-  chars(text) {
-    if(parent && parent.children) {
-      var node = { type: 3, text, parent };
-      parent.children.push(node)
-    }
+    // console.log(tokens);
+    return tokens.join('+')
   }
-})
 
-console.log(root);
+}
+// console.log(parseText('haha {{name}} receive offer worth {{amount}}'));
+// console.log(parseText("{{owner}}'s blog"));
+
+
+
