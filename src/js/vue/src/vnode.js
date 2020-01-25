@@ -12,17 +12,7 @@ export const createTextNode = (text) => {
 }
 
 export const createElementNode = (tag, data, children) => {
-  let vnode = new VNode(tag, data, children);
-  if(children && children.length) {
-    vnode.children = children.map(child => {
-      if(child.type == 1) {
-        return createElementNode(child);
-      } else {
-        return createTextNode(child.text);
-      }
-    });
-  }
-  return vnode;
+  return new VNode(tag, data, children);
 }
 
 export const toString = function(val) {

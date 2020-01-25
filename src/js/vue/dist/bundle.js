@@ -1,1 +1,173 @@
-!function(t){var n={};function e(r){if(n[r])return n[r].exports;var i=n[r]={i:r,l:!1,exports:{}};return t[r].call(i.exports,i,i.exports,e),i.l=!0,i.exports}e.m=t,e.c=n,e.d=function(t,n,r){e.o(t,n)||Object.defineProperty(t,n,{enumerable:!0,get:r})},e.r=function(t){"undefined"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(t,Symbol.toStringTag,{value:"Module"}),Object.defineProperty(t,"__esModule",{value:!0})},e.t=function(t,n){if(1&n&&(t=e(t)),8&n)return t;if(4&n&&"object"==typeof t&&t&&t.__esModule)return t;var r=Object.create(null);if(e.r(r),Object.defineProperty(r,"default",{enumerable:!0,value:t}),2&n&&"string"!=typeof t)for(var i in t)e.d(r,i,function(n){return t[n]}.bind(null,i));return r},e.n=function(t){var n=t&&t.__esModule?function(){return t.default}:function(){return t};return e.d(n,"a",n),n},e.o=function(t,n){return Object.prototype.hasOwnProperty.call(t,n)},e.p="",e(e.s=0)}([function(t,n,e){e.r(n);var r=/^<(\w+)/,i=/^\s*(\/)?>/,o=/^\s*((\w+)="(\w*)")/,u=/^\s*<\/\w+\>\s*/,a=function(t,n){return t.substr(n)};function l(t){var n=t.match(r);if(n){let r=n[1];var e;let l;t=a(t,n[0].length);for(var u={tagName:r,attrs:[]};!(l=t.match(i))&&(e=t.match(o));)u.attrs.push([e[1],e[2],e[3]]),t=a(t,e[0].length);return l&&(u.unarySlash=l[1],t=a(t,l[0].length)),[u,t]}return[]}function s(t){var n;return(n=t.match(u))&&(t=a(t,n[0].length)),[n,t]}function c(t){return 2!=t.type&&(t.type,!0)}function f(t){const n=function(t){if(t.attrs){let n={};for(let e of t.attrs)n[e[1]]=e[2];return JSON.stringify(n)}return}(t),e=function(t){const n=t.children;if(n&&n.length)return`[${n.map(t=>function(t){return 1==t.type?f(t):function(t){return`_t(${2==t.type?t.expression:JSON.stringify(t.text)})`}(t)}(t)).join(",")}]`}(t);return`_e("${t.tag}"${n?`,${n}`:""}${e?`,${e}`:""})`}var h=f;class p{constructor(t,n,e,r){this.tag=t,this.data=n,this.children=e,this.text=r}}const d=t=>new p(null,null,null,t),g=(t,n,e)=>{let r=new p(t,n,e);return e&&e.length&&(r.children=e.map(t=>1==t.type?g(t):d(t.text))),r};let y,v,b=[];!function(t,n){for(;t;){var e,r=t.indexOf("<");if(r<0){e=t,t="",n.chars(e);break}r>0&&(e=t.substr(0,r),t=a(t,e.length),n.chars(e));let[i,o]=l(t);i&&(n.start(i.tagName,i.attrs,"/"===i.unarySlash),t=o);let[u,c]=s(t);u&&(n.end(),t=c)}}('<div id="app" class="container">hello {{name}}</div>',{start(t,n,e){var r={type:1,tag:t,attrs:n,unary:e,parent:v,children:[]};v&&v.children&&v.children.push(r),0==b.length&&(r.isRoot=!0,y=r),r.unary||(b.push(r),v=r)},end(){v=v.parent,b.pop()},chars(t){var n;v&&v.children&&((n=function(t){if(t=t.trim()){var n=/\{\{\w+\}\}/g;if(n.test(t)){var e;n.lastIndex=0;for(var r=[],i=0;null!=(e=n.exec(t));)e.index>0&&r.push('"'+t.substring(i,e.index)+'"'),r.push("_v("+e[0].substring(2,e[0].length-2)+")"),i=n.lastIndex;return i<t.length&&r.push('"'+t.substring(i)+'"'),r.join("+")}}}(t))?v.children.push({type:2,text:t,parent:v,expression:n}):v.children.push({type:3,text:t,parent:v}))}}),function(t){t&&(!function t(n){if(n.static=c(n),1==n.type&&n.children)for(let e=0;e<n.children.length;e++){const r=n.children[e];r.static=c(r),t(r),r.static||(n.static=!1)}}(t),function t(n){if(n.static)n.staticRoot=!0;else if(n.staticRoot=!1,n.children)for(let e=0;e<n.children.length;e++){t(n.children[e])}}(t))}(y);const x="with(this){return "+h(y)+";}";console.log(x);var m=Object.assign({name:"yefei"},{_t:d,_e:g,_v:function(t){return t}});console.log(m);var _=new Function(x).call(m);console.log(_)}]);
+/******/ (function(modules) { // webpackBootstrap
+/******/ 	// The module cache
+/******/ 	var installedModules = {};
+/******/
+/******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
+/******/
+/******/ 		// Check if module is in cache
+/******/ 		if(installedModules[moduleId]) {
+/******/ 			return installedModules[moduleId].exports;
+/******/ 		}
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = installedModules[moduleId] = {
+/******/ 			i: moduleId,
+/******/ 			l: false,
+/******/ 			exports: {}
+/******/ 		};
+/******/
+/******/ 		// Execute the module function
+/******/ 		modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
+/******/
+/******/ 		// Flag the module as loaded
+/******/ 		module.l = true;
+/******/
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+/******/
+/******/
+/******/ 	// expose the modules object (__webpack_modules__)
+/******/ 	__webpack_require__.m = modules;
+/******/
+/******/ 	// expose the module cache
+/******/ 	__webpack_require__.c = installedModules;
+/******/
+/******/ 	// define getter function for harmony exports
+/******/ 	__webpack_require__.d = function(exports, name, getter) {
+/******/ 		if(!__webpack_require__.o(exports, name)) {
+/******/ 			Object.defineProperty(exports, name, { enumerable: true, get: getter });
+/******/ 		}
+/******/ 	};
+/******/
+/******/ 	// define __esModule on exports
+/******/ 	__webpack_require__.r = function(exports) {
+/******/ 		if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
+/******/ 			Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
+/******/ 		}
+/******/ 		Object.defineProperty(exports, '__esModule', { value: true });
+/******/ 	};
+/******/
+/******/ 	// create a fake namespace object
+/******/ 	// mode & 1: value is a module id, require it
+/******/ 	// mode & 2: merge all properties of value into the ns
+/******/ 	// mode & 4: return value when already ns object
+/******/ 	// mode & 8|1: behave like require
+/******/ 	__webpack_require__.t = function(value, mode) {
+/******/ 		if(mode & 1) value = __webpack_require__(value);
+/******/ 		if(mode & 8) return value;
+/******/ 		if((mode & 4) && typeof value === 'object' && value && value.__esModule) return value;
+/******/ 		var ns = Object.create(null);
+/******/ 		__webpack_require__.r(ns);
+/******/ 		Object.defineProperty(ns, 'default', { enumerable: true, value: value });
+/******/ 		if(mode & 2 && typeof value != 'string') for(var key in value) __webpack_require__.d(ns, key, function(key) { return value[key]; }.bind(null, key));
+/******/ 		return ns;
+/******/ 	};
+/******/
+/******/ 	// getDefaultExport function for compatibility with non-harmony modules
+/******/ 	__webpack_require__.n = function(module) {
+/******/ 		var getter = module && module.__esModule ?
+/******/ 			function getDefault() { return module['default']; } :
+/******/ 			function getModuleExports() { return module; };
+/******/ 		__webpack_require__.d(getter, 'a', getter);
+/******/ 		return getter;
+/******/ 	};
+/******/
+/******/ 	// Object.prototype.hasOwnProperty.call
+/******/ 	__webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
+/******/
+/******/ 	// __webpack_public_path__
+/******/ 	__webpack_require__.p = "";
+/******/
+/******/
+/******/ 	// Load entry module and return exports
+/******/ 	return __webpack_require__(__webpack_require__.s = "./index.js");
+/******/ })
+/************************************************************************/
+/******/ ({
+
+/***/ "./index.js":
+/*!******************!*\
+  !*** ./index.js ***!
+  \******************/
+/*! no exports provided */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+;
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _src_index__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./src/index */ \"./src/index.js\");\n\n\nnew _src_index__WEBPACK_IMPORTED_MODULE_0__[\"default\"]({\n  el: \"#app\",\n  data: {\n    name: '叶飞',\n    companyName: \"腾讯\",\n    city: \"深圳\"\n  }\n})\n\n//# sourceURL=webpack:///./index.js?");
+
+/***/ }),
+
+/***/ "./src/generator.js":
+/*!**************************!*\
+  !*** ./src/generator.js ***!
+  \**************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+;
+eval("__webpack_require__.r(__webpack_exports__);\n\n\n// 生成虚拟的元素节点\nfunction createElement() {}\n// 生成虚拟的文本节点\nfunction createTextNode() {}\n\n\n// 生成元素节点代码\nfunction generateElement(node) {\n  const data = genData(node);\n  const children = genChildren(node);\n  let code = `_e(\"${node.tag}\"${data ? `,${data}` : \"\"}${children ? `,${children}` : \"\"})`\n  return code;\n}\n// 生成文本节点代码\nfunction generateText(node) {\n  return `_t(${node.type==2 ? node.expression : JSON.stringify(node.text)})`\n}\nfunction genData(node) {\n  if(node.attrs) {\n    let hash = {};\n    for (let attr of node.attrs) {\n      hash[attr[1]] = attr[2];\n    }\n    return JSON.stringify(hash);\n  }\n  return;\n}\n// 生成节点代码\nfunction genNode(node) {\n  if(node.type==1) {\n    return generateElement(node);\n  } else {\n    return generateText(node);\n  }\n}\n// 递归生成子节点的代码（子节点可能是元素，也可能是文本）\nfunction genChildren(node) {\n  const children = node.children;\n  if(children && children.length) {\n    console.log(children);\n    return `[${children.map(c => genNode(c)).join(',')}]`\n  }\n}\n\n/* harmony default export */ __webpack_exports__[\"default\"] = (generateElement);\n\n\n//# sourceURL=webpack:///./src/generator.js?");
+
+/***/ }),
+
+/***/ "./src/helper.js":
+/*!***********************!*\
+  !*** ./src/helper.js ***!
+  \***********************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+;
+eval("__webpack_require__.r(__webpack_exports__);\nconst e = document.createElement.bind(document);\nconst t = document.createTextNode.bind(document);\n\nfunction createDOM(vnode) {\n  let dom = vnode.tag ? e(vnode.tag) : t(vnode.text);\n  if(vnode.children && vnode.children.length) {\n    vnode.children.forEach(child => {\n      dom.appendChild(createDOM(child))\n    });\n  }\n  return dom;\n}\n\n/* harmony default export */ __webpack_exports__[\"default\"] = ({\n  createDOM\n});\n\n//# sourceURL=webpack:///./src/helper.js?");
+
+/***/ }),
+
+/***/ "./src/index.js":
+/*!**********************!*\
+  !*** ./src/index.js ***!
+  \**********************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+;
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"default\", function() { return Vue; });\n/* harmony import */ var _parser__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./parser */ \"./src/parser.js\");\n/* harmony import */ var _optimizer__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./optimizer */ \"./src/optimizer.js\");\n/* harmony import */ var _generator__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./generator */ \"./src/generator.js\");\n/* harmony import */ var _vnode__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./vnode */ \"./src/vnode.js\");\n/* harmony import */ var _helper__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./helper */ \"./src/helper.js\");\n\n\n\n\n\n\n\nclass Vue {\n  constructor(options) {\n    let el;\n    if(options.el==undefined || (el = document.querySelector(options.el)) == null) {\n      throw new Error('el must be specified in Vue constructor');\n    }\n    this.el = el;\n    this.template = this.el.outerHTML;\n    this.options = options || {};\n    this.context = Object.assign(options.data || {}, {_t: _vnode__WEBPACK_IMPORTED_MODULE_3__[\"_t\"], _e: _vnode__WEBPACK_IMPORTED_MODULE_3__[\"_e\"], _v: _vnode__WEBPACK_IMPORTED_MODULE_3__[\"_v\"]});\n\n    this.ast = null;\n    this.code = null;\n    this.vnode = null;\n    this.render = null;\n    this.main();\n  }\n\n  main() {\n    this.parseTemplate();\n    this.optimize(this.ast);\n    this.render = this.genCode();\n    this.vnode = this.render.call(this.context)\n    debugger;\n    this.paint();\n  }\n\n  genCode() {\n    let code =  'with(this){return ' + Object(_generator__WEBPACK_IMPORTED_MODULE_2__[\"default\"])(this.ast) + ';}';\n    code = code.replace(/\\n/g, '');\n    console.log(code);\n    let func = new Function(code);\n    return func;\n  }\n\n  optimize() {\n    Object(_optimizer__WEBPACK_IMPORTED_MODULE_1__[\"default\"])(this.ast); \n  }\n\n  parseTemplate() {\n    let parent, stack = [];\n    let _ = this;\n    \n    Object(_parser__WEBPACK_IMPORTED_MODULE_0__[\"parseHTML\"])(this.template, {\n      start(tag, attrs, unary) {\n        var node = { type: 1, tag, attrs, unary, parent, children:[] };\n        if(parent && parent.children) {\n          parent.children.push(node);\n        }\n        if(stack.length == 0) {\n          node.isRoot = true;\n          _.ast = node;\n        }\n        if(!node.unary) {\n          stack.push(node);\n          parent =  node;\n        }\n      },\n      end() {\n        parent = parent.parent;\n        stack.pop();\n      },\n      chars(text) {\n        if(parent && parent.children) {\n          // var node = { type: 3, text, parent };\n          var expression;\n          if(expression=Object(_parser__WEBPACK_IMPORTED_MODULE_0__[\"parseText\"])(text)) {\n            parent.children.push({ type: 2, text, parent, expression })\n          } else {\n            parent.children.push({ type: 3, text, parent })\n          }\n        }\n      }\n    })\n  }\n\n  paint() {\n    var newNode = _helper__WEBPACK_IMPORTED_MODULE_4__[\"default\"].createDOM(this.vnode);\n    let parentNode = this.el.parentElement;\n   \n    parentNode.insertBefore(newNode, this.el)\n  }\n}\n\n// with(this){\n//   return _e(\"div\",\n//   {\"id\":\"app\"},\n//   [\n//     _t(\"\\n    \"),\n//     _e(\"h3\",{},\n//     [\n//       _t(\"hello \"+_v(name))\n//     ]\n//     ),\n//     _t(\"you wanna to goto \"+_v(companyName)+\" in \"+_v(city))\n//   ]\n// );\n// }\n\n//# sourceURL=webpack:///./src/index.js?");
+
+/***/ }),
+
+/***/ "./src/optimizer.js":
+/*!**************************!*\
+  !*** ./src/optimizer.js ***!
+  \**************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+;
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"default\", function() { return optimize; });\n\nfunction isStatic(node) {\n  if(node.type == 2) {\n    return false;\n  } else if(node.type == 3) {\n    return true;\n  } else {\n    // node.type == 1 需要区分普通个元素还是有 v-if v-pre 等各种directive的元素，这里先都统一返回为true，因为还没实现directive\n    return true;\n  }\n}\n\nfunction markStatic(parent) {\n  parent.static = isStatic(parent);\n  if(parent.type == 1 && parent.children) {\n    for (let i = 0; i < parent.children.length; i++) {\n      const child = parent.children[i];\n      child.static = isStatic(child);\n      markStatic(child);\n      if(!child.static) {\n        parent.static = false;\n      }\n    }\n  }\n}\n\nfunction markRootStatic(parent) {\n  if(parent.static) {\n    parent.staticRoot = true;\n    return;\n  } else {\n    parent.staticRoot = false;\n  }\n  if(parent.children) {\n    for (let i = 0; i < parent.children.length; i++) {\n      const child = parent.children[i];\n      markRootStatic(child);\n    }\n  }\n}\n\nfunction optimize(root) {\n  if(!root) return;\n\n  markStatic(root);\n  markRootStatic(root);\n}\n\n\n//# sourceURL=webpack:///./src/optimizer.js?");
+
+/***/ }),
+
+/***/ "./src/parser.js":
+/*!***********************!*\
+  !*** ./src/parser.js ***!
+  \***********************/
+/*! exports provided: parseHTML, parseText */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+;
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"parseHTML\", function() { return parseHTML; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"parseText\", function() { return parseText; });\nvar startTagOpen = /^<(\\w+)/;\nvar startTagClose = /^\\s*(\\/)?>/;\nvar attrTag = /^\\s*((\\w+)=\"(\\w*)\")/;\nvar endTag = /^\\s*<\\/\\w+\\>\\s*/;\n\nvar advance = function(template, n) {\n  return template.substr(n);\n}\n\nfunction  parseStartTag(template){\n  var start = template.match(startTagOpen);\n  \n  if(start) {\n    let tagName = start[1];\n    var attr;\n    let end;\n    template = advance(template, start[0].length)\n  \n    var node = {\n      tagName,\n      attrs: []\n    }\n  \n    while(!(end = template.match(startTagClose)) && (attr = template.match(attrTag))) {\n      node.attrs.push([attr[1],attr[2],attr[3]]);\n      template = advance(template, attr[0].length)\n    }\n    if(end) {\n      node.unarySlash = end[1];\n      template = advance(template, end[0].length);\n    }\n    return [node, template];\n  }\n  return [];\n}\n\nfunction parseEndTag(template) {\n  var end;\n  if(end = template.match(endTag)) {\n    template = advance(template, end[0].length);\n  }\n  return [end, template];\n}\n\n// let matchStartTag = parseStartTag();\n\n// var textEndPos = template.indexOf('<');\n// if(textEndPos > 0) {\n//   text = template.substr(0, textEndPos);\n//   advance(text.length);\n// } else {\n//   text = template;\n//   html = '';\n// }\n// console.log(text);\n\n\n// parseEndTag();\n\nfunction parseHTML(template, options) {\n  while(template) {\n    var text;\n    var textEndPos = template.indexOf('<');\n    if(textEndPos < 0) {\n      text = template;\n      template = '';\n      options.chars(text);\n      break;\n    }\n\n    if(textEndPos > 0) {\n      text = template.substr(0, textEndPos);\n      template = advance(template, text.length);\n      options.chars(text);\n    }\n\n    let [matchStartTag, newTemplate1] = parseStartTag(template);\n    if(matchStartTag) {\n      options.start(matchStartTag.tagName, matchStartTag.attrs, matchStartTag.unarySlash==='/')\n      template = newTemplate1;\n    }\n\n    let [matchEndTag, newTemplate2] = parseEndTag(template);\n    if(matchEndTag) {\n      options.end();\n      template = newTemplate2;\n    }\n  }\n}\n\nfunction parseText(text) {\n  text = text.trim();\n\n  if(!text) return;\n\n  var re = /\\{\\{\\w+\\}\\}/g;\n  \n  if(re.test(text)) {\n    re.lastIndex = 0;\n    var match;\n    var tokens = [];\n    var lastIndex = 0;\n  \n    while((match = re.exec(text)) != null) {\n      if(match.index > 0) tokens.push('\"' + text.substring(lastIndex, match.index)  + '\"');\n      tokens.push('_v(' + match[0].substring(2,match[0].length-2) + ')')\n      lastIndex = re.lastIndex;\n      // console.log(lastIndex);\n    }\n    if(lastIndex < text.length) {\n      tokens.push('\"' + text.substring(lastIndex) + '\"');\n    }\n    // console.log(tokens);\n    return tokens.join('+')\n  }\n\n}\n// console.log(parseText('haha {{name}} receive offer worth {{amount}}'));\n// console.log(parseText(\"{{owner}}'s blog\"));\n\n\n\n\n\n//# sourceURL=webpack:///./src/parser.js?");
+
+/***/ }),
+
+/***/ "./src/vnode.js":
+/*!**********************!*\
+  !*** ./src/vnode.js ***!
+  \**********************/
+/*! exports provided: default, createTextNode, createElementNode, toString, _t, _e, _v */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+;
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"default\", function() { return VNode; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"createTextNode\", function() { return createTextNode; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"createElementNode\", function() { return createElementNode; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"toString\", function() { return toString; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"_t\", function() { return createTextNode; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"_e\", function() { return createElementNode; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"_v\", function() { return toString; });\nclass VNode {\n  constructor(tag, data, children, text) {\n    this.tag = tag;\n    this.data = data;\n    this.children = children;\n    this.text = text;\n  }\n}\n\nconst createTextNode = (text) => {\n  return new VNode(null, null, null, text);\n}\n\nconst createElementNode = (tag, data, children) => {\n  return new VNode(tag, data, children);\n}\n\nconst toString = function(val) {\n  return val;\n}\n\n\n\n//# sourceURL=webpack:///./src/vnode.js?");
+
+/***/ })
+
+/******/ });
