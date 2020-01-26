@@ -10,7 +10,7 @@
 
   <div id="app" class="article-list-container">
     <div class="article" v-for="article in articles">
-      <h3 v-if="article.showTitle">{{article.title}}</h3>
+      <h3 v-if="article.showTitle"><a href="{{article.href}}">{{article.title}}</a></h3>
       <p class="meta">
         <span class="created-date">{{article.created_at}}</span>
         <span class="tag">{{article.type}}({{article.tags}})</span>

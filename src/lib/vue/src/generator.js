@@ -35,7 +35,9 @@ function genData(node) {
     for (let attr of node.attrs) {
       hash[attr[1]] = attr[2];
     }
-    return JSON.stringify(hash);
+    let data = JSON.stringify(hash);
+    data = data.replace(/\"\{\{(.+)\}\}"/, "$1")
+    return data;
   }
   return;
 }

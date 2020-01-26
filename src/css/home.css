@@ -70,10 +70,14 @@
   line-height: 2em;
 }
 
-.home-page .article-list-container .article h3 {
+.home-page .article-list-container .article h3,
+.home-page .article-list-container .article h3 a {
   color: #1a89e1;
+  cursor: pointer;
+  text-decoration: none;;
 }
-.home-page .article-list-container .article h3:hover {
+.home-page .article-list-container .article h3:hover
+.home-page .article-list-container .article h3 a:hover {
   cursor: pointer;
   color: #0d90f7;
 }

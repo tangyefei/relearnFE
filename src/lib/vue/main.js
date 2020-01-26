@@ -11,6 +11,7 @@ new Vue({
       "tags": "JavaScript, 继承", 
       "overview": "本篇将介绍在JavaScript中如何实现继承",
       "showTitle": true,
+      "href": "https://tangyefei.cn/detail.html?id=20",
     },{
       "id": 21,
       "type": "tech", 
@@ -19,6 +20,7 @@ new Vue({
       "tags": "JavaScript, 继承", 
       "overview": "本篇将介绍在JavaScript中如何实现继承",
       "showTitle": true,
+      "href": "https://tangyefei.cn/detail.html?id=20",
     }]
   }
 })
