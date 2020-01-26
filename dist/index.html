@@ -126,7 +126,7 @@
 
     <div class="article-list-container">
       <div id="unique">
-        <div class="article" data-id="20">
+        <div class="article" data-id="20" v-for="article in articles">
           <h3>{{article.title}}</h3>
           <p class="meta">
             <span class="created-date">{{article.created_at}}</span>
