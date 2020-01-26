@@ -15,7 +15,7 @@ export default class Vue {
     this.template = this.el.outerHTML;
     this.options = options || {};
     this.context = Object.assign(options.data || {}, {_t, _e, _v});
-
+    
     this.ast = null;
     this.code = null;
     this.vnode = null;

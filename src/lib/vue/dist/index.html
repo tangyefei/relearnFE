@@ -7,10 +7,26 @@
   <title>mini Vue</title>
 </head>
 <body>
+
   <div id="app">
-    <h3>hello {{name}}</h3>
-    you wanna to goto <span>{{companyName}}</span> in <span>{{city}}</span>
+    <div class="article-list-container">
+      <div class="article" data-id="20">
+        <h3>{{title}}</h3>
+        <p class="meta">
+          <span class="created-date">{{created_at}}</span>
+          <span class="tag">{{type}}({{tags}})</span>
+        </p>
+        <div class="overview">{{overview}}</div>
+      </div>
+    </div>
   </div>
+<!--   
+  <div id="app">
+    <div class="article-list-container">
+      <h3 class="title">hello {{name}}</h3>
+      you wanna to goto <span>{{companyName}}</span> in <span>{{city}}</span>
+    </div>
+  </div> -->
   <script src="./bundle.js"></script>
 </body>
 </html> 

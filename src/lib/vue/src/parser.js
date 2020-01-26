@@ -1,6 +1,6 @@
 var startTagOpen = /^<(\w+)/;
 var startTagClose = /^\s*(\/)?>/;
-var attrTag = /^\s*((\w+)="(\w*)")/;
+var attrTag = /^\s*(([\w_-]+)="([\w-_]*)")/;
 var endTag = /^\s*<\/\w+\>\s*/;
 
 var advance = function(template, n) {
