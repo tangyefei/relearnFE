@@ -1,8 +1,8 @@
-import {parseHTML, parseText} from './parser';
-import optimize from './optimizer';
-import generate from './generator'
-import {_t, _e, _v} from './vnode';
-import helper from './helper';
+import {parseHTML, parseText} from './src/parser';
+import optimize from './src/optimizer';
+import generate from './src/generator'
+import {_t, _e, _v} from './src/vnode';
+import helper from './src/helper';
 
 
 export default class Vue {
@@ -102,3 +102,4 @@ export default class Vue {
 //   ]
 // );
 // }
+// import Vue from './src/index';
