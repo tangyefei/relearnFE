@@ -4,7 +4,7 @@
 import $ from 'js/dquery';
 import "css/base.css";
 import "css/home.css";
-import Vue from './lib/vue';
+import Vue from 'kuz-vue';
 
 function getArticle(param) {
   // var sufix = location.hash;
