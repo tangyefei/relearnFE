@@ -19,8 +19,15 @@ export const toString = function(val) {
   return val;
 }
 
+export const forEach = function(list, handler) {
+  return list.map((item,index) => {
+    return handler(item,index);
+  })
+}
+
 export {
   createTextNode as _t,
   createElementNode as _e,
-  toString as _v
+  toString as _v,
+  forEach as _l
 };

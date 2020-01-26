@@ -1,6 +1,6 @@
 var startTagOpen = /^<(\w+)/;
 var startTagClose = /^\s*(\/)?>/;
-var attrTag = /^\s*(([\w_-]+)="([\w-_]*)")/;
+var attrTag = /^\s*(([\w_-]+)="([^"]*)")/;
 var endTag = /^\s*<\/\w+\>\s*/;
 
 var advance = function(template, n) {
@@ -18,11 +18,19 @@ function  parseStartTag(template){
   
     var node = {
       tagName,
-      attrs: []
-    }
+      attrs: [],
+      directives: []
+    };
   
-    while(!(end = template.match(startTagClose)) && (attr = template.match(attrTag))) {
-      node.attrs.push([attr[1],attr[2],attr[3]]);
+    while(
+      !(end = template.match(startTagClose)) && (attr = template.match(attrTag))
+    ) {
+      if(attr[2].startsWith('v-')) {
+        let [,type] = attr[2].split('-');
+        node.directives.push({raw: attr[1], type, expr:attr[3] })
+      } else {
+        node.attrs.push([attr[1],attr[2],attr[3]]);
+      }
       template = advance(template, attr[0].length)
     }
     if(end) {
@@ -76,7 +84,7 @@ export function parseHTML(template, options) {
 
     let [matchStartTag, newTemplate1] = parseStartTag(template);
     if(matchStartTag) {
-      options.start(matchStartTag.tagName, matchStartTag.attrs, matchStartTag.unarySlash==='/')
+      options.start(matchStartTag.tagName, matchStartTag.attrs, matchStartTag.unarySlash==='/', matchStartTag.directives)
       template = newTemplate1;
     }
 
@@ -93,7 +101,8 @@ export function parseText(text) {
 
   if(!text) return;
 
-  var re = /\{\{\w+\}\}/g;
+  // expression regexp
+  var re = /\{\{\w+(\.{1}\w+)*\}\}/g;
   
   if(re.test(text)) {
     re.lastIndex = 0;

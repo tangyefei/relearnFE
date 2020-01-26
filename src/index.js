@@ -22,7 +22,9 @@ function getArticle(param) {
 
       new Vue({
         el: "#unique",
-        data: article
+        data: {
+          article
+        }
         // data: {
         //   name: '叶飞',
         //   companyName: "腾讯",

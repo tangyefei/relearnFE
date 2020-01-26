@@ -8,9 +8,21 @@ function createTextNode() {}
 
 // 生成元素节点代码
 function generateElement(node) {
+  const directives = node.directives;
   const data = genData(node);
+  
   const children = genChildren(node);
   let code = `_e("${node.tag}"${data ? `,${data}` : ""}${children ? `,${children}` : ""})`
+  if(directives && directives.length) {
+    let dir = directives[0];
+    if(dir.type == 'if') {
+      let expr = dir.expr;
+      code = `${expr} ? ${code} : _t("")`;
+    } else if(dir.type == 'for') {
+      let [item, ,list] = dir.expr.trim().split(' ')
+      code = `...(_l(${list},(${item}, index)=>{return ${code};}))`
+    }
+  }
   return code;
 }
 // 生成文本节点代码
@@ -39,7 +51,6 @@ function genNode(node) {
 function genChildren(node) {
   const children = node.children;
   if(children && children.length) {
-    console.log(children);
     return `[${children.map(c => genNode(c)).join(',')}]`
   }
 }

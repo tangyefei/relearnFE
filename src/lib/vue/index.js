@@ -1,7 +1,7 @@
 import {parseHTML, parseText} from './src/parser';
 import optimize from './src/optimizer';
 import generate from './src/generator'
-import {_t, _e, _v} from './src/vnode';
+import * as vnodeFuncs from './src/vnode';
 import helper from './src/helper';
 
 
@@ -14,7 +14,7 @@ export default class Vue {
     this.el = el;
     this.template = this.el.outerHTML;
     this.options = options || {};
-    this.context = Object.assign(options.data || {}, {_t, _e, _v});
+    this.context = Object.assign(options.data || {}, vnodeFuncs);
     
     this.ast = null;
     this.code = null;
@@ -27,9 +27,11 @@ export default class Vue {
 
   main() {
     this.parseTemplate();
+    console.log(this.ast);
     this.optimize(this.ast);
     this.render = this.genCode();
     this.vnode = this.render.call(this.context)
+    debugger;
     this.paint();
   }
 
@@ -50,8 +52,8 @@ export default class Vue {
     let _ = this;
     
     parseHTML(this.template, {
-      start(tag, attrs, unary) {
-        var node = { type: 1, tag, attrs, unary, parent, children:[] };
+      start(tag, attrs, unary, directives) {
+        var node = { type: 1, tag, attrs, unary, parent, children:[], directives };
         if(parent && parent.children) {
           parent.children.push(node);
         }
