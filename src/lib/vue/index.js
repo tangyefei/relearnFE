@@ -20,7 +20,9 @@ export default class Vue {
     this.code = null;
     this.vnode = null;
     this.render = null;
+
     this.main();
+    this.el.remove();
   }
 
   main() {

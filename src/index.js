@@ -21,7 +21,7 @@ function getArticle(param) {
       // Render.renderList(resp.body);
 
       new Vue({
-        el: "#app",
+        el: "#unique",
         data: article
         // data: {
         //   name: '叶飞',
