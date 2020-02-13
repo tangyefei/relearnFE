@@ -39,6 +39,7 @@ function genNode(node) {
 function genChildren(node) {
   const children = node.children;
   if(children && children.length) {
+    console.log(children);
     return `[${children.map(c => genNode(c)).join(',')}]`
   }
 }
