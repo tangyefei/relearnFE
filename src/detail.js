@@ -2,6 +2,9 @@ import Request from 'js/request.js';
 import Render from 'js/render.js';
 import "css/base.css";
 import "css/detail.css";
+import PagePen from 'page-pen';
+
+new PagePen(document.body);
 
 var s = window.location.search;
 var matches = s.match(/id=.+/g);
