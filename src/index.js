@@ -4,7 +4,7 @@ import Render from 'js/render';
 import $ from 'js/dquery';
 import "css/base.css";
 import "css/home.css";
-import Vue from 'vue/index.js';
+// import Vue from 'vue/index.js';
 
 function getArticle(param) {
   var sufix = location.hash;
