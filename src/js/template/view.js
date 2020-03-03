@@ -103,6 +103,7 @@ var instance = {
     var $preview = $(this.template.querySelector('.preview-panel'));
     $page.on('input', '.markdown-editor', function(evt) {
       $preview.html(markdown.makeHtml(evt.target.value));
+      Prism.highlightAll();
     });
   },
   render: function(){
