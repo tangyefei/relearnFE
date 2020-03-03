@@ -54,6 +54,9 @@ var instance = {
         form.overview.value = resp.body.overview;
         form.content.value = resp.body.content;
         $preview.html(markdown.makeHtml(resp.body.content));
+        setTimeout(() => {
+          Prism.highlightAll();
+        },200)
       }
     })
   },
@@ -103,7 +106,9 @@ var instance = {
     var $preview = $(this.template.querySelector('.preview-panel'));
     $page.on('input', '.markdown-editor', function(evt) {
       $preview.html(markdown.makeHtml(evt.target.value));
-      Prism.highlightAll();
+      setTimeout(() => {
+        Prism.highlightAll();
+      },200)
     });
   },
   render: function(){

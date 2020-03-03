@@ -29,12 +29,6 @@ footer {
   padding: 0 10px;
 }
 
-code {
-  color: #b36e6e;
-}
 pre {
-  background: #000;
-  color: #FFF;
-  padding: 10px;
-  overflow-y: auto;
+   box-shadow: 2px 2px 5px #ccc;;
 }

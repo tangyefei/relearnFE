@@ -53,7 +53,9 @@ function renderDetail(data) {
   
   $banner.append($title).append($desc);
   var $content = $('div', true).addClass('content').html(markdown.makeHtml(data.content));
-  Prism.highlightAll();
   $('.article-container').append($banner).append($content);
+  setTimeout(()=> {
+    Prism.highlightAll();
+  },200)
 }
 export default {renderList, list: renderList, mlist: renderManageList, renderDetail};
